@@ -7,7 +7,7 @@ services:
       RAM_SIZE: "10G"
       CPU_CORES: "3"
       DISK_SIZE: "28G"
-      USERNAME: "Labib"
+      USERNAME: "User"
       PASSWORD: "Admin@1234"
     devices:
       - /dev/kvm
@@ -19,4 +19,25 @@ services:
       - "3389:3389/tcp"
       - "3389:3389/udp"
     stop_grace_period: 2m
+    restart: on-failure
+
+  guacd:
+    image: guacamole/guacd
+    container_name: guacd
+    restart: on-failure
+
+  guacamole:
+    image: jwetzell/guacamole
+    container_name: guacamole
+    environment:
+      GUACD_HOST: guacd
+      RDP_HOST: windows
+      RDP_PORT: "3389"
+      RDP_USERNAME: "User"
+      RDP_PASSWORD: "Admin@1234"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - windows
+      - guacd
     restart: on-failure
