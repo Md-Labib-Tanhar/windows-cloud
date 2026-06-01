@@ -8,14 +8,18 @@
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
-  "forwardPorts": [8006, 3389],
+  "forwardPorts": [8006, 3389, 8080],
   "portsAttributes": {
     "8006": {
-      "label": "Windows Web UI",
-      "onAutoForward": "openBrowser"
+      "label": "Windows noVNC",
+      "onAutoForward": "silent"
     },
     "3389": {
       "label": "RDP"
+    },
+    "8080": {
+      "label": "Guacamole Full Screen",
+      "onAutoForward": "openBrowser"
     }
   }
 }
