@@ -1,0 +1,21 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "16gb",
+    "storage": "32gb"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "forwardPorts": [8006, 3389],
+  "portsAttributes": {
+    "8006": {
+      "label": "Windows Web UI",
+      "onAutoForward": "openBrowser"
+    },
+    "3389": {
+      "label": "RDP"
+    }
+  }
+}
